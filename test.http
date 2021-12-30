@@ -1,0 +1,143 @@
+GET http://localhost:8080
+
+###
+# @name signUp
+POST http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "ngoctan",
+  "email": "ngoctan@gmail.com",
+  "password": "123123", 
+  "roles": ["admin"]
+}
+
+###
+POST http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "ngochai",
+  "email": "ngochai@gmail.com",
+  "password": "123123", 
+  "roles": ["user"]
+}
+
+###
+# @name access_public_resource
+GET http://localhost:8080/api/test/all
+
+###
+# @name access_protected_resource
+GET http://localhost:8080/api/test/user
+
+
+###
+# @name login_wrong_password
+POST http://localhost:8080/api/auth/signin
+Content-Type: application/json
+
+{
+  "email": "ngoctan@gmail.com",
+  "password": "1231231"
+}
+
+###
+# @name login_correct_password
+POST http://localhost:8080/api/auth/signin
+Content-Type: application/json
+
+{
+  "email": "ngoctan@gmail.com",
+  "password": "123123"
+}
+
+###
+# @name refreshToken
+POST http://localhost:8080/api/auth/refreshtoken
+Content-Type: application/json
+
+{
+  "refreshToken": "52ea8e36-2c22-402e-b8ce-7a3c80e12ba0"
+}
+
+###
+# @name access_protected_resource
+GET http://localhost:8080/api/test/user
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwMTQyNzMxLCJleHAiOjE2NDAxNDI3NjF9.iQZx35cwoZXQKOoBc7lhQ6DQpIgaVNLBpjNzJ9Ie6f0
+###
+GET http://localhost:8080/api/test/admin
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwMTQyNzMxLCJleHAiOjE2NDAxNDI3NjF9.iQZx35cwoZXQKOoBc7lhQ6DQpIgaVNLBpjNzJ9Ie6f0
+
+###
+# @name get_number_questions
+GET http://localhost:8080/api/questions/total
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwNzY3MTA5LCJleHAiOjE2NDA3NzA3MDl9.RxxpTWAoCsamRckHLQ2GJIpLi4d7fPqUzgawAFOtgxQ
+
+###
+# @name get_question
+GET http://localhost:8080/api/question/2
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwNzY3MTA5LCJleHAiOjE2NDA3NzA3MDl9.RxxpTWAoCsamRckHLQ2GJIpLi4d7fPqUzgawAFOtgxQ
+###
+# @name get_question
+GET http://localhost:8080/api/question/2
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwNzY3MTA5LCJleHAiOjE2NDA3NzA3MDl9.RxxpTWAoCsamRckHLQ2GJIpLi4d7fPqUzgawAFOtgxQ
+
+###
+# @name get_all_questions
+GET http://localhost:8080/api/questions
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwNzY3MTA5LCJleHAiOjE2NDA3NzA3MDl9.RxxpTWAoCsamRckHLQ2GJIpLi4d7fPqUzgawAFOtgxQ
+
+###
+# @name save_Result
+POST http://localhost:8080/api/saveResult
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwNzk2MzI1LCJleHAiOjE2NDA3OTk5MjV9.Rc0KRQqmft_U5AUYQJJyszCo5jmrBStHUTtfelF24YE
+Content-Type: application/json
+
+{
+  "score": 4,
+  "id": 1
+}
+
+###
+# @name save_Result
+POST http://localhost:8080/api/saveResult
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwNzk1MDEyLCJleHAiOjE2NDA3OTg2MTJ9.5lxNcTnwcF5vmAzzICFTb80IcqDongxkAiS1mOZ82Ag
+Content-Type: application/json
+
+{
+  "score": 5,
+  "id": "1"
+}
+
+###
+# @name add_question
+POST http://localhost:8080/api/question
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwMTQzOTkzLCJleHAiOjE2NDAxNDc1OTN9.ShfjCf9ZQEAwASWN4RY8RK3wDifZYNyMI7LFedXwy6k
+
+{
+  "question": "1+2=?",
+  "answers": {"a": 0,  "b": 1, "c": 2, "d": 3},
+  "multi": false,
+  "correctAnswer": "c"
+}
+
+###
+# @name edit_question
+PUT http://localhost:8080/api/question/2
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwMTQzOTkzLCJleHAiOjE2NDAxNDc1OTN9.ShfjCf9ZQEAwASWN4RY8RK3wDifZYNyMI7LFedXwy6k
+
+{
+  "question": "1+2=?",
+  "answers": {"a": "0",  "b": "1", "c": "2", "d": "3"},
+  "multi": true,
+  "correctAnswer": "d"
+}
+###
+# @name delete_question
+DELETE http://localhost:8080/api/question/2
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwMTM5ODIyLCJleHAiOjE2NDAxNDM0MjJ9.GSprRyXwDB1skFU7FdWBS5bld7f61KI6ggcJ0u9_V0c
+
+
