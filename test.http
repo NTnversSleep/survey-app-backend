@@ -64,15 +64,15 @@ Content-Type: application/json
 ###
 # @name access_protected_resource
 GET http://localhost:8080/api/test/user
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwMTQyNzMxLCJleHAiOjE2NDAxNDI3NjF9.iQZx35cwoZXQKOoBc7lhQ6DQpIgaVNLBpjNzJ9Ie6f0
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwOTE4MjE5LCJleHAiOjE2NDA5MjE4MTl9.0fN2RcEbk7DcO9za97VedK2w6l3dJYMI-P2S-mv9CVs
 ###
 GET http://localhost:8080/api/test/admin
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwMTQyNzMxLCJleHAiOjE2NDAxNDI3NjF9.iQZx35cwoZXQKOoBc7lhQ6DQpIgaVNLBpjNzJ9Ie6f0
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwOTE4NzYyLCJleHAiOjE2NDA5MjIzNjJ9.svWTqOwY6bF231e4Lp4uPWR-NC8RuKpAIHbF9GIVRlQ
 
 ###
 # @name get_number_questions
 GET http://localhost:8080/api/questions/total
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwNzY3MTA5LCJleHAiOjE2NDA3NzA3MDl9.RxxpTWAoCsamRckHLQ2GJIpLi4d7fPqUzgawAFOtgxQ
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQwOTE5MzY3LCJleHAiOjE2NDA5MjI5Njd9.6HRu5UG_jzpv3fRj_bscUurYJ9DJLo0yasdP4Tq4528
 
 ###
 # @name get_question

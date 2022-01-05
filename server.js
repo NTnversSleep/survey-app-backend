@@ -1,4 +1,9 @@
 const express = require("express");
+const morgan = require("morgan");
+const path = require("path");
+const rfs = require("rotating-file-stream");
+const jwt = require("jsonwebtoken");
+const config = require("./config/auth.config.js");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 var bcrypt = require("bcryptjs");
@@ -17,9 +22,29 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// audit logger
+const accessLogStream = rfs.createStream("access.log", {
+  interval: "1d", // rotate daily
+  path: path.join(__dirname, "log"),
+});
+
+morgan.token("userId", function (req, res) {
+  const token = req.headers["x-access-token"];
+  return token ? jwt.verify(token, config.secret).id : "-";
+});
+
+app.use(
+  morgan(
+    "Timestamp: [:date[clf]]) userId: :userId Request: :method :url Status: :status",
+    {
+      stream: accessLogStream,
+    }
+  )
+);
+
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to tanataan application." });
+  res.send({ message: "Welcome to tanataan application." });
 });
 
 // routes
@@ -33,7 +58,8 @@ app.listen(PORT, () => {
 });
 
 const db = require("./models");
-const { user: User, role: Role, question: Question, score: Score} = db;
+const { decode } = require("punycode");
+const { user: User, role: Role, question: Question, score: Score } = db;
 // const Role = db.role;
 // const Question = db.question;
 
@@ -98,5 +124,4 @@ function initial() {
     multi: true,
     correctAnswer: "ab",
   });
-
 }

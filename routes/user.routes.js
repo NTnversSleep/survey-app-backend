@@ -45,5 +45,5 @@ module.exports = function (app) {
     controller.deleteQuestion
   );
 
-  app.post("/api/saveResult", controller.saveScore)
+  app.post("/api/saveResult", [authJwt.verifyToken], controller.saveScore)
 };
